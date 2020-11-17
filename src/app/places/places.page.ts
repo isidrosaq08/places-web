@@ -15,18 +15,37 @@ export class PlacesPage implements OnInit {
     private router: Router,
     private placeService: PlaceService) { }
 
-  ngOnInit() {
+  /** Fired once during component initialization. This event can be used to initialize local members 
+   * and make calls into services that only need to be done once.
+   */
+    ngOnInit() {
     this.places = this.placeService.getPlaces();
   }
 
+  /**
+   * Fired right before Angular destroys the view. Useful for cleanup like unsubscribing from observables.
+   */
+  ngOnDestroy(){
+
+  }
+
+  /**
+   * Fired when the component routing to is about to animate into view.
+   */
   ionViewWillEnter(){
     this.places = this.placeService.getPlaces();
   }
 
+  /**
+   * This method allows you to navigate in view of adding new place
+   */
   addNewPlace(){
     this.router.navigate(['/places/place-add']);
   }
 
+  /**
+   * This method allows you to navigate in view of home
+   */
   goToHome(){
     this.router.navigate(['/home']);
   }
